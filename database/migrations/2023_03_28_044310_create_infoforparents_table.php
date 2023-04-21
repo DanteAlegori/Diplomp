@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('infoforparents', function (Blueprint $table) {
             $table->id();
-            $table->string('img');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('patronomic');
+            $table->string('img')->nullable();;
+            $table->string('name')->nullable();;
+            $table->string('surname')->nullable();;
+            $table->string('patronomic')->nullable();;
             $table->timestamps();
         });
     }

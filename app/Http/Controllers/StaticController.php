@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class StaticController extends Controller
 {
     public function index(){
-        return view('index');
+        return view('Index');
     }
 
     public function onas(){

@@ -7,11 +7,14 @@
     <h1 class="display-5 fw-bold text-body-emphasis">{{$Bios->name}} {{$Bios->surname}} {{$Bios->patronomic}}</h1>
     <div class="col-lg-6 mx-auto">
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-       <div class="p-1"> <h3> {{$Bios->birthday_date}}</h3></div> 
-       <div class="p-1"> <h3>-  {{$Bios->death_date}}</h3></div> 
-      </div>
-    </div>
-    <img src="{{asset('/img/' . $Bios->birthday_place)}}" class="img-fluid" alt="...">
-  </div>
+         <div class="p-1"> <h3> {{$Bios->birthday_date}}</h3></div> 
+         <div class="p-1"> <h3>-  {{$Bios->death_date}}</h3></div> 
+      <div>
+  <div>{{$Bios->birthday_place}}</div>
+    </div><img src="{{asset('/img/' . $Bios->img)}}" class="img-fluid" alt="..."></div>
+</div>
+</div>
+
+ 
 
 @endsection

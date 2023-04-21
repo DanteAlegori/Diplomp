@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('infoforstydents', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('img');
-            $table->string('content');
+            $table->string('img')->nullable(); ;
+            $table->string('name')->nullable(); ;
+            $table->string('zagolovok')->nullable();;
+            $table->string('content')->nullable();;
+            $table->foreignId('coment_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infoforstydents');
+        Schema::dropIfExists('news');
     }
 };

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('achivments', function (Blueprint $table) {
             $table->id();
-            $table->string('achivment_img');
-            $table->string('achivment_name');
+            $table->string('achivment_img')->nullable();;
+            $table->string('achivment_name')->nullable();;
             $table->timestamps();
         });
     }

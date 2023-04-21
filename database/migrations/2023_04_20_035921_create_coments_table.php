@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('infoforplaces', function (Blueprint $table) {
+        Schema::create('coments', function (Blueprint $table) {
             $table->id();
-            $table->string('birthday_places');
-            $table->string('death_places');
+            $table->foreignId('user_id')->nullable();
+            $table->string('content')->nullable();;
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infoforplaces');
+        Schema::dropIfExists('coments');
     }
 };

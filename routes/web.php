@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\BioController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticController;
+use PhpParser\Node\Stmt\Static_;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +18,34 @@ use App\Http\Controllers\StaticController;
 |
 */
 
-Route::get('/', [StaticController::class, 'index'])->name('index');
 
-Route::get('/static/onas', [StaticController::class, 'onas'])->name('onas');
+Route::controller(StaticController::class)->group(function(){
 
-Route::get('/static/contacts', [App\Http\Controllers\StaticController::class, 'contacts'])->name('contacts');
+ Route::get('/','index')->name('index');
 
-Route::get('/bio', [App\Http\Controllers\BioController::class, 'allbio'])->name('allbio');
+Route::get('/static/onas', 'onas')->name('onas');
 
-Route::get('/one_bio{id?}', [App\Http\Controllers\BioController::class, 'bio'])->name('bio_one');
+Route::get('/static/contacts', 'contacts')->name('contacts'); 
+});
+
+Route::controller(BioController::class)->group(function(){
+
+Route::get('/bio',  'allbio')->name('allbio');
+
+Route::get('/one_bio{id?}',  'bio')->name('bio_one');
+
+});
+
+
+Route::controller(NewsController::class)->group(function(){
+Route::get('/news',  'allnews')->name('news');
+
+
+Route::get('/one_news{id?}', 'news')->name('news_one');
+
+});
+
+
 
 
 Auth::routes();
@@ -31,8 +53,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/user', [App\Http\Controllers\UserController::class, 'user'])->name('user');
 
-   
-    });
+   });
     
     
 Route::middleware(['admin'])->group(function() {
@@ -41,6 +62,9 @@ Route::middleware(['admin'])->group(function() {
     Route::get('/create', [App\Http\Controllers\AdminController::class, 'create'])->name('createview');
     Route::post('/create', [App\Http\Controllers\AdminController::class, 'create'])->name('create');
         
+    Route::get('/createnews', [App\Http\Controllers\AdminController::class, 'createnews'])->name('createnewsview');
+    Route::post('/createnews', [App\Http\Controllers\AdminController::class, 'createnews'])->name('createnews');
+
     Route::get('/admin_bio', [App\Http\Controllers\AdminController::class, 'allbio'])->name('admin_bio');
 
     Route::get('/upgrate', [App\Http\Controllers\AdminController::class, 'updatebio'])->name('upgrateview');
