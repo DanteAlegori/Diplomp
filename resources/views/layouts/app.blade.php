@@ -17,9 +17,9 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary orange-400">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{route('index')}}"><img src="{{ asset('../public/img/logotipp.png') }}" alt="" width="70" height="auto"></a>
+    <a class="navbar-brand" href="{{route('index')}}">Agrobio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,6 +37,11 @@
         <li>
           <a class="nav-link active" aria-current="page" href="{{route ('news')}}">Новости</a>
         </li>
+        @Auth
+        <li>
+          <a class="nav-link active" aria-current="page" href="{{route ('news')}}">Избраное</a>
+        </li>
+        @endAuth
         <ul class="navbar-nav ms-auto">
           <!-- Authentication Links -->
           @guest
@@ -58,7 +63,7 @@
       </form>
   
               <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       {{ Auth::user()->name }}
                   </a>
 
@@ -68,7 +73,9 @@
                                        document.getElementById('logout-form').submit();">
                           {{ __('Выйти из акаунта') }}
                       </a>
+                        <a class="nav-link active" aria-current="page" href="{{route ('user')}}">Профиль</a>
 
+                        
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                           @csrf
                       </form>
@@ -86,11 +93,11 @@
 </nav>
 
 
-<main class="py-4">
+<main class="py-4 bg-orange-400">
             @yield('content')
         </main>
 
-        <div class="container">
+        <div class="container  bf-orange-400" >
   <footer class="py-3 my-4 ">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Главная</a></li>

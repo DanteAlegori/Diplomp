@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->nullable(); ;
-            $table->string('name')->nullable(); ;
-            $table->string('zagolovok')->nullable();;
-            $table->string('content')->nullable();;
+            $table->string('img')->nullable(); 
+            $table->string('name')->nullable(); 
+            $table->string('zagolovok')->nullable();
+            $table->text('content',5000)->nullable();
             $table->foreignId('coment_id')->nullable();
             $table->timestamps();
         });

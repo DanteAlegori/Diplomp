@@ -149,14 +149,14 @@ class AdminController extends Controller
 
     public function createnews(Request $request){
 
-        $img = time() . '-' . optional($request->img) ->getClientOriginalName();
-        $img = optional($request->img) ->move(public_path('img'), $img);
+        
         $News = News::create([
 
-        'name' => $request->name,
-         'content' => $request->content, 
-         'img' => $img, 
-         'zagolovok' => $request->zagolovok
+        ('name') => $request->name,
+         ('content') => $request->content, 
+         ('img')=>$img = optional($request ->file('img')) ->getClientOriginalName(),
+            $img = optional($request->img) ->move(public_path('img'), $img), 
+         ('zagolovok') => $request->zagolovok
         
         ]);
         return view('admin.create-news',compact('News'));
