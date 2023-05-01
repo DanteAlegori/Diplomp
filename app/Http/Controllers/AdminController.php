@@ -111,7 +111,7 @@ class AdminController extends Controller
             'death_date' => $request->death_date,
     
             'birthday_img' =>$birthday_img = optional( $request->file('birthday_img'))->getClientOriginalName(),
-            $birthday_img = optional($request->birthday_img) ->move(public_path('birthday_img'), $birthday_img),
+            $birthday_img = optional($request->birthday_img) ->move(public_path('img'), $birthday_img),
     
             'birthday_place' => $request->birthday_place,
     

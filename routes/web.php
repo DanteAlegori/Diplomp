@@ -25,7 +25,6 @@ Route::controller(StaticController::class)->group(function(){
 
 Route::get('/static/onas', 'onas')->name('onas');
 
-Route::get('/static/contacts', 'contacts')->name('contacts'); 
 });
 
 Route::controller(BioController::class)->group(function(){
