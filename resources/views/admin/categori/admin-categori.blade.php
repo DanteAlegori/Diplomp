@@ -14,10 +14,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $categori)
+                @foreach ($categori as $category)
                     <tr>
                         <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->name}}</td>
                         <td>{{ $category->description }}</td>
                         <td>{{ $category->created_at }}</td>
                         <td>{{ $category->updated_at }}</td>

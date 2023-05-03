@@ -73,6 +73,18 @@ Route::middleware(['admin'])->group(function() {
 
     Route::post('/upgratenews', [App\Http\Controllers\AdminController::class, 'updatenews'])->name('updatenewss');
 
+
+
+
+    Route::get('/admin-categori', [App\Http\Controllers\AdminController::class, 'allcategori'])->name('all_categori');
+
+    Route::get('/admin-categori-create', [App\Http\Controllers\AdminController::class, 'createcategori'])->name('create_categori');
+    
+    Route::post('/admin-categori-create', [App\Http\Controllers\AdminController::class, 'createcategori'])->name('create_categorii');
+
+
+
+
     Route::get('/upgrate_news/{id?}', [App\Http\Controllers\AdminController::class, 'updatenews'])->name('upgratenew');
     Route::get('/news_delete/{id?}', [App\Http\Controllers\AdminController::class, 'deletenews'])->name('deletenews');
 

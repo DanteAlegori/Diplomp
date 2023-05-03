@@ -237,18 +237,41 @@ class AdminController extends Controller
     }
 
 
-   
+    public function allcategori()
+    { $empty_news = Categori::where('name', '=', '')->get();
 
+        if ($empty_news) {
+            foreach ($empty_news as $news) {
+                $news->delete();
+                
+            }
+        }
+            $categori = Categori::all();
+            return view('admin.categori.admin-categori', compact('categori'));
+    }
+
+    public function updatecategori($id)
+    {
+        $categori = Categori::find($id);
+        return view('admin.categori.create-categori', compact('categori'));
+    }
 
     public function createcategori(Request $request)
     {
-        $category = Categori::create([
+        $categori = Categori::create([
             'name' => $request->name,
+            'description' => $request->description,
         ]);
      
-        return view('admin.categori.create-categori', compact('category'));
+        return view('admin.categori.create-categori', compact('categori'));
     }
 
+    public function deletecategori($id)
+    {
+        $categori = Categori::find($id);
+        Categori::destroy($id);
+        return view('admin.admin');
+    }
 
 
 
