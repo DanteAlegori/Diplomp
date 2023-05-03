@@ -1,26 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold">Административная панель</h1>
-  <div class="col-lg-6 mx-auto">
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <ul>
-        <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"><a href="{{route('admin_bio')}}">Биографии администратора</a></button>
-      
-        <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold p-2"><a href="{{route('createview')}}">Добавить Биографию</a></button>
-      </ul>
-      <ul>
-        <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"><a href="{{route('admin_bio')}}">Новости администратора</a></button>
+<div class="admin-panel-section container">
+    <h1 class="admin-panel-title">{{ __('Admin panel') }}</h1>
         
-        <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold p-2"><a href="{{route('createnewsview')}}">Добавить Новость</a></button>
-      </ul>
+    <div class="admin-panel-buttons">
+        <a href="{{ route('admin_bio') }}" class="btn btn-primary">{{ __('Manage Biographies') }}</a>
+        
+        <a href="{{ route('createview') }}" class="btn btn-primary">{{ __('Add New Biography') }}</a>
+        
+        <a href="{{ route('admin-news') }}" class="btn btn-primary">{{ __('Manage News') }}</a>
+        
+        <a href="{{ route('createnewsview') }}" class="btn btn-primary">{{ __('Add New News') }}</a>
     </div>
-  </div>
 </div>
-
-
-
-
-
 @endsection

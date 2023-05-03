@@ -1,26 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
- 
-@foreach ($News as $New) 
-<div class="container ">
-  <div class="row gx-5">
-    <div class="col-md-6 mb-4">
-      <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
-        <img src="{{asset('/img/' . $New->img)}}" class="img-fluid" />
-        <a href="#!">
-          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-        </a>
-      </div>
+<div class="news-section container">
+    <div class="row">
+        @foreach ($News as $new)
+            @if (!empty(trim($new->content)))
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 news-card">
+                        <div class="card-img-top news-img"  style="background-image: url('{{ asset('/img/' . $new->img) }}')">
+                            <img src="{{asset('/img/' . $new->img)}}" class="img-fluid" /> 
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ $new->name }}</h3>
+                            <p class="card-text">{{ $new->zagolovok }}</p>
+                            <a href="{{ route('news_one', $new->id) }}" class="btn btn-primary">{{ __('Read More') }}</a>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endforeach
     </div>
-    <div class="col-md-6 mb-4">
-      <h4><strong>{{$New->name}}</strong></h4>
-      <p class="text-muted">
-        {{$New->zagolovok}}  
-      </p>
-    <a href="{{ route('news_one', $New->id) }}" class="btn btn-primary">Подробнее</a>
-    </div>
-  </div>
-  </div>
-@endforeach
+</div>
 @endsection

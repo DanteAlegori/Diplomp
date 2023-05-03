@@ -2,16 +2,15 @@
 
 @section('content')
 <div class="container d-flex justify-content-center">
-  <form class="mt-10" action="{{ route('create') }}" enctype="multipart/form-data" method="POST" >
+  <form class="mt-10" action="{{ route('updatebios') }}" enctype="multipart/form-data" method="POST" >
     @csrf
 
     <legend>Обновление Биографии</legend>
 
-    <input name="{{$Bio->id}}">
 
     <div class="mb-3">
       <label for="name" class="form-label">Имя</label>
-      <input type="string" class="form-control" id="name" name="name" required>
+      <input type="string" class="form-control" id="name" name="name"  required>
     </div>
 
     <div class="mb-3">

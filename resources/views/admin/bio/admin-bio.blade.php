@@ -10,7 +10,7 @@
           <div class="card-body">
             <h5 class="card-title">{{$Bio->name}} {{$Bio->surname}} {{$Bio->patronomic}}</h5>
             <a href="{{ route('delete', $Bio->id) }}" class="btn btn-primary p-2">Удалить</a>
-            <a href="{{ route('upgrateview', $Bio->id) }}" class="btn btn-primary">Изменить</a>
+            <a href="{{ route('upgrate', $Bio->id) }}" class="btn btn-primary">Изменить</a>
 
           </div>
         </div>

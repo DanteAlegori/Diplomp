@@ -27,17 +27,6 @@
       <input class="form-control" type="file" id="img" name="img">
       </div>
 
-     
-
-            
-
-
-
-
-
-
-
-         
 
       <button type="submit" class="btn btn-success">Создать</button>
        </div>

@@ -1,37 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold">Личный кабинет</h1>
-  <div class="col-lg-6 mx-auto">
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-      <ul>
-        
-      </ul>
-      <ul>
-
-      </ul>
+<div class="container py-8">
+    <h1 class="text-3xl text-center font-bold mb-8">Личный кабинет</h1>
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-xl font-bold mb-4">Ваши данные:</h2>
+        <ul class="list-disc pl-4">
+            <li class="mb-1">Ваш логин: {{ auth()->user()->login }}</li>
+            <li class="mb-1">Ваше имя: {{ auth()->user()->name }}</li>
+            <li class="mb-1">Ваша фамилия: {{ auth()->user()->surname }}</li>
+            <li class="mb-1">Ваша почта: {{ auth()->user()->email }}</li>
+        </ul>
     </div>
-  </div>
-</div>
-
-<div class="container">
-<div class="hero min-h-screen bg-base-200">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-5xl font-bold">Ваши данные: <br>
-            <ul>
-                <li>Ваш логин-{{ auth()->user()->login }}</li> <br>
-                <li>Ваше имя-{{ auth()->user()->name }}</li> <br>
-                <li>Ваше фамилия-{{ auth()->user()->surname }}</li> <br>
-                <li>Ваша почта-{{ auth()->user()->email }}</li>
-            </ul>
-        </h1> <br>
-        <button class="btn btn-primary">Мои избранные</button>
-      </div>
-    </div>
-  </div>
-  <!-- Content here -->
 </div>
 @endsection

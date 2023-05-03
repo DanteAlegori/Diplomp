@@ -38,15 +38,6 @@
   </div>
 
 
-
-
-
-
-
-
-
-
-
 <div class="px-4 py-5 my-5 text-center">
   <img src="{{asset('/img/' . $Bios->childhood_live_img)}}" class="img-thumbnail" alt="...">
   <h1 class="display-5 fw-bold text-body-emphasis"></h1>
