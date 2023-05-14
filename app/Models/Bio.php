@@ -32,14 +32,12 @@ class Bio extends Model
         'pensia_live_content',
         'achivments_id',
     ];
-    public function childrens()
-    {
-      return $this->hasMany(infoforchildrens::class);
-    }
 
-    public function parents()
-    {
-      return $this->hasMany(infoforparents::class);
-    }
-    
+    public function fans()
+{
+    return $this->belongsToMany('App\Models\User', 'favorite_biographies', 'bio_id', 'user_id');
+}
+   
+
+
 }

@@ -111,7 +111,6 @@
 
 
       <button type="submit" class="btn btn-success">Обновить</button>
-       </div>
    </form>
   </div>
 @endsection

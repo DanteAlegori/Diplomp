@@ -44,8 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function favoriteBiographies()
+{
+    return $this->belongsToMany('App\Models\Biography', 'favorite_biographies', 'user_id', 'bio_id');
+}
     public function Admin()
     {
         return $this->admin === true;
     }
 }
+

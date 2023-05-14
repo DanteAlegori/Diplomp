@@ -110,7 +110,6 @@
 
 
       <button type="submit" class="btn btn-success">Создать</button>
-       </div>
    </form>
   </div>
 @endsection

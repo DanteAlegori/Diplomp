@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categori extends Model
+class favoritebiographies extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'description',
+        'bio_id',
+        'user_id',
     ];
+   
 
-
-
-    
 }
