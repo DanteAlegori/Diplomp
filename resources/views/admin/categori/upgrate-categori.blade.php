@@ -1,20 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>Редактирование категории</h1>
-        <form method="post" action="{{ route('categories.update', $category->id) }}">
-            {{ csrf_field() }}
-            {{ method_field('put') }}
-            <div class="form-group">
-                <label for="name">Название:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Описание:</label>
-                <textarea class="form-control" id="description" name="description" required>{{ $category->description }}</textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Обновить</button>
-        </form>
+<div class="container d-flex justify-content-center">
+  <form class="mt-10" action="{{ route('update_categori') }}" enctype="multipart/form-data" method="POST" >
+    @csrf
+
+    <legend>Обновление Категории</legend>
+    <input type="hidden" name="categori_id" value="{{ $categori->id }}">
+    <div class="mb-3">
+      <label for="name" class="form-label">Имя</label>
+      <input type="string" class="form-control" id="name" name="name"  value="{{ $categori->name }}">
     </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Заголовок</label>
+        <textarea class="form-control" id="description"  name="description" rows="10">{{ $categori->description }}</textarea>
+    </div>
+
+
+      <button type="submit" class="btn btn-success">Обновить</button>
+       </div>
+   </form>
+  </div>
 @endsection

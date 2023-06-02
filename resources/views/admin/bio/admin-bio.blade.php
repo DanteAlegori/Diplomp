@@ -7,7 +7,7 @@
           <div class="col p-2">
             <div class="card " style="width: 18rem;">
           <img src="{{asset('/img/' . $Bio->img)}}" class="card-img-top" alt="...">
-
+          <h5 class="card-title">{{$Bio->name}} {{$Bio->surname}} {{$Bio->patronomic}}</h5>
 
 
           
