@@ -31,12 +31,12 @@ class Bio extends Model
         'pensia_live_img',
         'pensia_live_content',
         'achivments_id',
+        'categori_id',
     ];
 
-    public function fans()
-{
-    return $this->belongsToMany('App\Models\User', 'favorite_biographies', 'bio_id', 'user_id');
-}
+    public function Biocategori(){
+        return $this->hasMany(BioCategori::class);
+    }
    
 
 

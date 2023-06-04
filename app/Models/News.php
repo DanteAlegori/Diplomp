@@ -12,9 +12,11 @@ class News extends Model
         'name',
         'zagolovok',
         'content',
+        
     ];
-    public function coments()
+   
+    public function Newscategori()
     {
-      return $this->hasMany(Coment::class);
+      return $this->hasMany(NewsCategori::class);
     }
 }

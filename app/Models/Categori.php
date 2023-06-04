@@ -13,6 +13,13 @@ class Categori extends Model
         'description',
     ];
 
+public function Newscategori(){
+    return $this->hasMany(NewsCategori::class);
+}
+
+public function Biocategori(){
+    return $this->hasMany(BioCategori::class);
+}
 
 
     
