@@ -100,6 +100,13 @@ class BioController extends Controller
         $bio->stydent_live_content = $request->input('stydent_live_content');
         $bio->osnovnaia_live_content = $request->input('osnovnaia_live_content');
         $bio->pensia_live_content = $request->input('pensia_live_content');
+
+        $bio->opisanie_deitelnosti = $request->input('opisanie_deitelnosti');
+        $bio->xp_for_work = $request->input('xp_for_work');
+        $bio->achivments = $request->input('achivments');
+        $bio->nagradi = $request->input('nagradi');
+        $bio->categori_id = $request->input('categori_id');
+
         $bio->save();
 
         return view('admin.admin');
@@ -211,6 +218,11 @@ class BioController extends Controller
             $bio->stydent_live_content = $request->input('stydent_live_content');
             $bio->osnovnaia_live_content = $request->input('osnovnaia_live_content');
             $bio->pensia_live_content = $request->input('pensia_live_content');
+            $bio->opisanie_deitelnosti = $request->input('opisanie_deitelnosti');
+            $bio->xp_for_work = $request->input('xp_for_work');
+            $bio->achivments = $request->input('achivments');
+            $bio->nagradi = $request->input('nagradi');
+            $bio->categori_id = $request->input('categori_id');
             $bio->save();
 
             return redirect()->route('admin')->with('success', 'Информация успешно обновлена');

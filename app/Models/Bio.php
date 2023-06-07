@@ -20,8 +20,6 @@ class Bio extends Model
         'birthday_place',
         'death_img',
         'death_place',
-        'infoforchildren_id',
-        'infoforparents_id',
         'childhood_live_img',
         'childhood_live_content',
         'stydent_live_img',
@@ -30,12 +28,15 @@ class Bio extends Model
         'osnovnaia_live_content',
         'pensia_live_img',
         'pensia_live_content',
-        'achivments_id',
+        'opisanie_deitelnosti',
+        'xp_for_work',
+        'achivments',
+        'nagradi',
         'categori_id',
     ];
 
-    public function Biocategori(){
-        return $this->hasMany(BioCategori::class);
+    public function categori(){
+        return $this->hasMany(Categori::class);
     }
    
 

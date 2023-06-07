@@ -25,17 +25,19 @@ return new class extends Migration
             $table->string('birthday_place',50)->nullable();
             $table->string('death_img',100)->nullable();
             $table->string('death_place',50)->nullable();
-            $table->text('childhood_live_content',7000)->nullable();
+            $table->text('childhood_live_content',15000)->nullable();
             $table->string('childhood_live_img',100)->nullable();
             $table->string('stydent_live_img',100)->nullable();
-            $table->text('stydent_live_content',7000)->nullable();
+            $table->text('stydent_live_content',15000)->nullable();
             $table->string('osnovnaia_live_img',100)->nullable();
-            $table->text('osnovnaia_live_content',7000)->nullable();
+            $table->text('osnovnaia_live_content',15000)->nullable();
             $table->string('pensia_live_img',100)->nullable();
-            $table->text('pensia_live_content',7000)->nullable();
-            $table->foreignId('infoforchildren_id')->nullable();
-            $table->foreignId('infoforparents_id')->nullable();
-            $table->foreignId('achivments_id')->nullable();
+            $table->text('pensia_live_content',15000)->nullable();
+            $table->text('opisanie_deitelnosti',15000)->nullable();
+            $table->text('xp_for_work',15000)->nullable();
+            $table->text('achivments',15000)->nullable();
+            $table->text('nagradi',15000)->nullable();
+            $table->foreignId('categori_id')->nullable();
             $table->timestamps();
         });
     }

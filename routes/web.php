@@ -20,50 +20,56 @@ use App\Http\Controllers\StaticController;
 */
 
 
-Route::controller(StaticController::class)->group(function(){
+Route::controller(StaticController::class)->group(function () {
 
- Route::get('/','index')->name('index');
+    Route::get('/', 'index')->name('index');
 
-Route::get('/static/onas', 'onas')->name('onas');
-
+    Route::get('/static/onas', 'onas')->name('onas');
 });
 
-Route::controller(BioController::class)->group(function(){
+Route::controller(BioController::class)->group(function () {
 
-Route::get('/bio',  'allbio')->name('allbio');
+    Route::get('/bio',  'allbio')->name('allbio');
 
-Route::get('/one_bio{id?}',  'bio')->name('bio_one');
-
+    Route::get('/one_bio{id?}',  'bio')->name('bio_one');
 });
 
 
-Route::controller(NewsController::class)->group(function(){
-Route::get('/news',  'allnews')->name('news');
+Route::controller(NewsController::class)->group(function () {
+    Route::get('/news',  'allnews')->name('news');
 
 
-Route::get('/one_news{id?}', 'news')->name('news_one');
-
+    Route::get('/one_news{id?}', 'news')->name('news_one');
 });
 
 
 
 
 Auth::routes();
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [App\Http\Controllers\UserController::class, 'user'])->name('user');
+});
 
-   });
-    
-    
-Route::middleware(['admin'])->group(function() {
+
+Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('admin');
+
+
+
 
     Route::get('/create', [App\Http\Controllers\BioController::class, 'createbioview'])->name('createview');
     Route::post('/createe', [App\Http\Controllers\BioController::class, 'createbio'])->name('create');
-        
+
+
+
+
     Route::get('/createnews', [App\Http\Controllers\NewsController::class, 'createnews'])->name('createnewsview');
     Route::post('/createnewss', [App\Http\Controllers\NewsController::class, 'createnewss'])->name('createnews');
+
+
+
+
 
     Route::get('/admin_bio', [App\Http\Controllers\BioController::class, 'allbioadmin'])->name('admin_bio');
 
@@ -79,16 +85,21 @@ Route::middleware(['admin'])->group(function() {
     Route::get('/admin-categori', [App\Http\Controllers\AdminController::class, 'allcategori'])->name('all_categori');
 
     Route::get('/admin-categori-create', [App\Http\Controllers\AdminController::class, 'createcategori'])->name('create_categori');
-    
+
     Route::post('/admin-categori-create', [App\Http\Controllers\AdminController::class, 'createcategorii'])->name('create_categorii');
 
     Route::post('/admin-categori-update', [App\Http\Controllers\AdminController::class, 'categoriupdate'])->name('update_categori');
 
 
+    Route::post('/cat_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'addcategoribio'])->name('addcategoribio'); 
+
+    Route::get('/categori_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'viewaddcategoribio'])->name('viewaddcategoribio');
 
 
 
-  
+
+
+
     Route::get('/categori_update/{id?}', [App\Http\Controllers\AdminController::class, 'updatecategori'])->name('upgratecategori');
     Route::get('/categori_delete/{id?}', [App\Http\Controllers\AdminController::class, 'deletecategori'])->name('deletecategori');
 
@@ -98,5 +109,4 @@ Route::middleware(['admin'])->group(function() {
 
     Route::get('/upgrate_bio/{id?}', [App\Http\Controllers\BioController::class, 'updatePage'])->name('upgrate');
     Route::get('/bio_delete/{id?}', [App\Http\Controllers\BioController::class, 'delete'])->name('delete');
-
 });

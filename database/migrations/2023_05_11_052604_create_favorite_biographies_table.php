@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('favorite_biographies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bio_id');
+            $table->foreignId('bio_id')->unique();
             $table->foreignId('user_id');
             $table->timestamps();
         });

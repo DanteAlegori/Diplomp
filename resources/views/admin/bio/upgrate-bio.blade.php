@@ -106,6 +106,34 @@
               </div>
 
 
+
+
+
+
+              <div class="mb-3">
+                <label for="opisanie_deitelnosti" class="form-label">Описание деятельности человека</label>
+                <textarea class="form-control" id="opisanie_deitelnosti"  name="opisanie_deitelnosti" rows="10" value="{{ $bio->opisanie_deitelnosti }}"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="xp_for_work" class="form-label">Опыт професиональной работы человека</label>
+                <textarea class="form-control" id="xp_for_work"  name="xp_for_work" rows="10" value="{{ $bio->xp_for_work }}"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="achivments" class="form-label">Достижения</label>
+                <textarea class="form-control" id="achivments"  name="achivments" rows="10" value="{{ $bio->achivments }}"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="nagradi" class="form-label">Награды</label>
+                <textarea class="form-control" id="nagradi"  name="nagradi" rows="10" value="{{ $bio->nagradi }}"></textarea>
+              </div>
+
+
       <button type="submit" class="btn btn-success">Обновить</button>
    </form>
   </div>

@@ -63,7 +63,7 @@
 
           <div class="mb-3">
             <label for="childhood_live_img" class="form-label">Фото детства</label>  
-            <input class="form-control" type="file" id="childhood_live_img" name="childhood_live_img">
+            <input class="form-control" type="file" id="childhood_live_img" name="childhood_live_img" >
             </div>
 
             <div class="mb-3">
@@ -107,6 +107,34 @@
                 <label for="pensia_live_content" class="form-label">Описание пенсии человека</label>
                 <textarea class="form-control" id="pensia_live_content"  name="pensia_live_content" rows="10"></textarea>
               </div>
+
+
+
+
+              <div class="mb-3">
+                <label for="opisanie_deitelnosti" class="form-label">Описание проф деятельгости человека</label>
+                <textarea class="form-control" id="opisanie_deitelnosti"  name="opisanie_deitelnosti" rows="10"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="xp_for_work" class="form-label">Опыт работы человека</label>
+                <textarea class="form-control" id="xp_for_work"  name="xp_for_work" rows="10"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="achivments" class="form-label">Описание достижений человека</label>
+                <textarea class="form-control" id="achivments"  name="achivments" rows="10"></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="nagradi" class="form-label">Награды человека</label>
+                <textarea class="form-control" id="nagradi"  name="nagradi" rows="10"></textarea>
+              </div>
+
+
+            
 
 
       <button type="submit" class="btn btn-success">Создать</button>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bio;
-
+use App\Models\BioCategori;
 use App\Models\News;
 use App\Models\Categori;
 use Illuminate\Http\Request;
@@ -60,7 +60,7 @@ class AdminController extends Controller
         $id = $request->input('categori_id');
         $categori = Categori::findOrFail($id);
 
-        
+
 
         $categori->name = $request->input('name');
         $categori->description = $request->input('description');
@@ -68,4 +68,24 @@ class AdminController extends Controller
 
         return view('admin.admin');
     }
+
+
+    public function viewaddcategoribio($id)
+    {
+        $bio = Bio::find($id);
+        $categori=Categori::all();
+        return view('admin.bio.add_categori', compact('bio','categori'));
+    }
+
+    public function addcategoribio(Request $request, $id)
+{
+    $categori = Categori::find($request->categori_id);
+    $bio = Bio::find($request->id);
+
+    $cart = BioCategori::create([
+        'categori_id' => $request->categori_id,
+        'bio_id' => $request->id,
+    ]);
+    return view('admin.admin');
+}
 }

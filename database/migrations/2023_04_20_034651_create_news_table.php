@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('img')->nullable(); 
             $table->string('name')->nullable(); 
             $table->string('zagolovok')->nullable();
-            $table->text('content',5000)->nullable();
+            $table->text('content',15000)->nullable();
             $table->timestamps();
         });
     }
