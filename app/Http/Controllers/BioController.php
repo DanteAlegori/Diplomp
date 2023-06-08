@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bio;
+use App\Models\Categori;
+use App\Models\Favorite_biography;
 use Illuminate\Http\Request;
 
 class BioController extends Controller
 {
-    public function allbio(){
-    
+    public function allbio()
+    {
+
 
         $Bios = Bio::all();
-        return view('bio.bio',compact('Bios'));
+        $categori = Categori::all();
+        return view('bio.bio', compact('Bios','categori'));
     }
 
-    public function bio($id){
+    public function bio($id)
+    {
         $Bios = Bio::find($id);
         return view('bio.bio_one', compact('Bios'));
     }
@@ -122,7 +127,7 @@ class BioController extends Controller
 
     public function allbioadmin()
     {
-       
+
         $Bios = Bio::all();
         return view('admin.bio.admin-bio', compact('Bios'));
     }
@@ -226,8 +231,64 @@ class BioController extends Controller
             $bio->save();
 
             return redirect()->route('admin')->with('success', 'Информация успешно обновлена');
-        } 
+        }
+    }
+    public function addFavoriteBio(Request $request, $user_id, $bio_id)
+    {
+        $existing_favorite_bio = Favorite_biography::where('user_id', $user_id)->where('bio_id', $bio_id)->first();
+
+        if ($existing_favorite_bio) {
+            // Запись уже существует, ничего не делаем
+        } else {
+            // Создаем новую запись
+            $favorite_bio = new Favorite_biography;
+            $favorite_bio->user_id = $user_id;
+            $favorite_bio->bio_id = $bio_id;
+            $favorite_bio->save();
+            
+        }
+        return back();
     }
 
 
+    public function removeFavorite(Request $request)
+    {
+        $user_id = $request->user_id;
+        $bio_id = $request->bio_id;
+
+        $favorite_bio = Favorite_biography::where('user_id', $user_id)->where('bio_id', $bio_id)->first();
+
+        if ($favorite_bio) {
+            $favorite_bio->delete();
+            return redirect()->back()->with('success', 'Биография была удалена из избранного.');
+        } else {
+            return redirect()->back()->with('error', 'Биография не была найдена в вашем избранном списке.');
+        }
+        
+    }
+
+
+    public function showFavorites($user_id)
+    {
+        $favorites = Favorite_biography::getFavoriteBios($user_id);
+        return view('user.favorites', compact('favorites'));
+    }
+
+
+
+    
+    public function index(Request $request)
+    {
+        $query = Bio::query();
+    
+        if ($request->categori) {
+            $query->where('categori_id', $request->categori);
+        }
+    
+        $Bios = $query->get();
+        $categori = Categori::all();
+    
+        return view('bio.fitr_bio', compact('Bios', 'categori'));
+    }
+    
 }

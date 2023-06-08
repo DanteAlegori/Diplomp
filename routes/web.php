@@ -31,7 +31,16 @@ Route::controller(BioController::class)->group(function () {
 
     Route::get('/bio',  'allbio')->name('allbio');
 
-    Route::get('/one_bio{id?}',  'bio')->name('bio_one');
+    Route::get('/one_bio/{id?}', 'bio')->name('bio_one');
+
+    Route::get('/bios', 'index')->name('bios.index');
+
+
+    Route::post('/addToFavorites/{user_id}/{bio_id}',  'addFavoriteBio')->name('addFavoriteBio');
+
+    Route::post('/favorites/remove',  'removeFavorite')->name('removeFavorite');
+
+    Route::get('/favorites/{user_id}',  'showFavorites')->name('showFavorites');
 });
 
 
@@ -95,6 +104,10 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/categori_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'viewaddcategoribio'])->name('viewaddcategoribio');
 
+
+Route::post('/cat_add_news/{id}', [App\Http\Controllers\AdminController::class, 'addcategorinews'])->name('addcategorinews'); 
+
+    Route::get('/categori_add_news/{id}', [App\Http\Controllers\AdminController::class, 'viewaddcategorinews'])->name('viewaddcategorinews');
 
 
 

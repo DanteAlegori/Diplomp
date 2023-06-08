@@ -35,10 +35,15 @@ class Bio extends Model
         'categori_id',
     ];
 
-    public function categori(){
-        return $this->hasMany(Categori::class);
+    public function categori()
+    {
+        return $this->belongsTo(Categori::class);
     }
-   
+    public function favorites()
+    {
+        return $this->hasMany(Favorite_biography::class);
+    }
 
 
+    
 }

@@ -10,6 +10,9 @@
           <img src="{{ asset('/img/' . $Bio->img) }}" class="card-img-top" alt="{{ $Bio->name }}">
           <div class="card-body d-flex flex-column justify-content-between">
             <h5 class="card-title">{{ $Bio->name }} {{ $Bio->surname }} {{ $Bio->patronomic }}</h5>
+            @if ($Bio->categori)
+            <span class="badge bg-primary">{{ $Bio->categori->name }}</span>
+            @endif
             <div>
               <a href="{{ route('delete', $Bio->id) }}" class="btn btn-danger me-2">{{ ('Удалить') }}</a>
               <a href="{{ route('upgrate', $Bio->id) }}" class="btn btn-primary me-2">{{ ('Изменить') }}</a>

@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('favorite_biographies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bio_id')->unique();
-            $table->foreignId('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('bio_id');
             $table->timestamps();
+    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('bio_id')->references('id')->on('bios')->onDelete('cascade');
         });
     }
 

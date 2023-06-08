@@ -14,9 +14,11 @@ class News extends Model
         'content',
         
     ];
-   
-    public function Newscategori()
+
+    public function categori()
     {
-      return $this->hasMany(NewsCategori::class);
+        return $this->belongsTo(Categori::class);
     }
+   
+    
 }

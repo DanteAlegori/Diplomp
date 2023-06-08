@@ -69,23 +69,46 @@ class AdminController extends Controller
         return view('admin.admin');
     }
 
-
     public function viewaddcategoribio($id)
     {
         $bio = Bio::find($id);
         $categori=Categori::all();
         return view('admin.bio.add_categori', compact('bio','categori'));
     }
+    public function viewaddcategorinews($id)
+    {
+        $news = News::find($id);
+        $categori=Categori::all();
+        return view('admin.news.add_categori', compact('news','categori'));
+    }
 
     public function addcategoribio(Request $request, $id)
-{
-    $categori = Categori::find($request->categori_id);
-    $bio = Bio::find($request->id);
+    {
+        $bio = Bio::find($id); // ищем биографию по id
+    
+        $categori_id = $request->categori_id;
+        $categori = Categori::find($categori_id); // ищем категорию по id
+    
+        if (!empty($categori)) { // если категория существует
+            $bio->categori()->associate($categori); // связываем выбранную категорию с биографией
+            $bio->save(); // сохраняем изменения
+        }
+    
+        return view('admin.admin');
+    }
 
-    $cart = BioCategori::create([
-        'categori_id' => $request->categori_id,
-        'bio_id' => $request->id,
-    ]);
-    return view('admin.admin');
-}
+    public function addcategorinews(Request $request, $id)
+    {
+        $news = News::find($id); // ищем биографию по id
+    
+        $categori_id = $request->categori_id;
+        $categori = Categori::find($categori_id); // ищем категорию по id
+    
+        if (!empty($categori)) { // если категория существует
+            $news->categori()->associate($categori); // связываем выбранную категорию с биографией
+            $news->save(); // сохраняем изменения
+        }
+    
+        return view('admin.admin');
+    }
 }

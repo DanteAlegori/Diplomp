@@ -11,16 +11,19 @@ class Categori extends Model
     protected $fillable = [
         'name',
         'description',
+        'categori_id',
     ];
 
-public function Newscategori(){
-    return $this->hasMany(NewsCategori::class);
-}
 
-public function Biocategori(){
-    return $this->hasMany(BioCategori::class);
-}
 
+    public function bios()
+    {
+        return $this->hasMany(Bio::class);
+    }
 
     
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }

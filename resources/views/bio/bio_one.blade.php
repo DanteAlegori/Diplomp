@@ -11,37 +11,37 @@
                     <img src="{{ asset('/img/' . $Bios->img) }}" alt="Image of person" class="img-fluid" style="max-height: 300px">
                 </div>
                 <ul class="list-unstyled justify-content-center">
-                    <li><strong>Birthday:</strong> {{ $Bios->birthday_date }}</li>
+                    <li><strong>Дата рождения:</strong> {{ $Bios->birthday_date }}</li>
                     <li><img src="{{ asset('/img/' . $Bios->birthday_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
-                    <li><strong>Birthplace:</strong> {{ $Bios->birthday_place }}</li>
+                    <li><strong>Место рождения:</strong> {{ $Bios->birthday_place }}</li>
                     <li><img src="{{ asset('/img/' . $Bios->death_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
-                    <li><strong>Death:</strong> {{ $Bios->death_date }}</li>
-                    <li><strong>Place of death:</strong> {{ $Bios->death_place }}</li>
-                    <li><strong>Childhood:</strong></li>
+                    <li><strong>Дата смерти:</strong> {{ $Bios->death_date }}</li>
+                    <li><strong>Место смерти:</strong> {{ $Bios->death_place }}</li>
+                    <li><strong>Детсво:</strong></li>
                     <li><img src="{{ asset('/img/' . $Bios->childhood_live_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
                     <li>{{ $Bios->childhood_live_content }}</li>
-                    <li><strong>Student years:</strong></li>
+                    <li><strong>Студенческие годы:</strong></li>
                     <li><img src="{{ asset('/img/' . $Bios->stydent_live_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
                     <li>{{ $Bios->stydent_live_content }}</li>
-                    <li><strong>Main activity:</strong></li>
+                    <li><strong>Основная жизнь:</strong></li>
                     <li><img src="{{ asset('/img/' . $Bios->osnovnaia_live_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
                     <li>{{ $Bios->osnovnaia_live_content }}</li>
-                    <li><strong>Pension age:</strong></li>
+                    <li><strong>Пенсия:</strong></li>
                     <li><img src="{{ asset('/img/' . $Bios->pensia_live_img) }}" alt="" class="img-fluid my-4"
                             style="max-height: 250px"></li>
                     <li>{{ $Bios->pensia_live_content }}</li>
-                    <li><strong>Description of activity:</strong></li>
+                    <li><strong>Главная активность в науке:</strong></li>
                     <li>{{ $Bios->opisanie_deitelnosti }}</li>
-                    <li><strong>Experience:</strong></li>
+                    <li><strong>Опыт работы професиональный:</strong></li>
                     <li>{{ $Bios->xp_for_work }}</li>
-                    <li><strong>Achievements:</strong></li>
+                    <li><strong>Достижения:</strong></li>
                     <li>{{ $Bios->achivments }}</li>
-                    <li><strong>Awards:</strong></li>
+                    <li><strong>Награды:</strong></li>
                     <li>{{ $Bios->nagradi }}</li>
                 </ul>
             </div>

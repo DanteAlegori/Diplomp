@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name')->nullable(); 
             $table->string('zagolovok')->nullable();
             $table->text('content',15000)->nullable();
+            $table->foreignId('categori_id')->nullable();
             $table->timestamps();
         });
     }
