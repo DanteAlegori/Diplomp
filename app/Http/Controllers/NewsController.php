@@ -3,23 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Coment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
     public function allnews()
     {
-
-
-            $News = News::all();
-            return view('news.news', compact('News'));
+            $news = News::all();
+            return view('news.news', compact('news'));
 
     }
 
     public function news($id)
     {
-        $News = News::find($id);
-        return view('news.news_one', compact('News'));
+        $News = News::findOrFail($id);
+        $comments = Coment::where('news_id', $id)
+                            ->where('approved', true)
+                            ->with('user')
+                            ->latest()
+                            ->get();
+
+        return view('news.news_one', compact('News', 'comments'));
     }
     public function createnews(Request $request)
     {
@@ -90,7 +96,22 @@ class NewsController extends Controller
 
         return view('admin.admin');
     }
+    public function storeComment(Request $request, $News, $user_id = null)
+{
+    $request->validate([
+        'name' => 'required',
+        'content' => 'required'
+    ]);
 
+    $coment = new Coment;
+    $coment->post_id = $News->id;
+    $coment->user_id = $user_id ?? Auth::id();
+    $coment->name = $request->name;
+    $coment->content = $request->content;
+    $coment->save();
+
+    return back()->with('success', 'Комментарий ожидает подтверждения администратором.');
+}
 
 }
 

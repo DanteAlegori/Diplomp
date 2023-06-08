@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('coments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->string('content')->nullable();;
+            $table->foreignId('news_id')->nullable();
+            $table->string('approved')->nullable();
+            $table->string('name')->nullable();
+            $table->string('content')->nullable();
             $table->timestamps();
         });
     }

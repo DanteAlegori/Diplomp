@@ -3,7 +3,7 @@
 @section('content')
     <div class="news-section container py-5">
         <div class="row g-3">
-            @foreach ($News as $news)
+            @foreach ($news as $news)
                 @if (!empty(trim($news->content)))
                     <div class="col-md-6">
                         <div class="card h-100 news-card shadow-sm">

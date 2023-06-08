@@ -47,7 +47,7 @@ Route::controller(BioController::class)->group(function () {
 Route::controller(NewsController::class)->group(function () {
     Route::get('/news',  'allnews')->name('news');
 
-
+    Route::post('/comments/{News}/{user_id?}',  'storeComment')->name('comments.store');
     Route::get('/one_news{id?}', 'news')->name('news_one');
 });
 

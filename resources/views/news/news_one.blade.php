@@ -15,5 +15,39 @@
     </div>
   </div>
 </div>
-  
+<div>@foreach ($comments as $comment)
+  @if ($comment->approved)
+      <div class="card mb-3">
+          <div class="card-body">
+              <h5 class="card-title">{{ $comment->user->name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at->diffForHumans() }}</h6>
+              <p class="card-text">{{ $comment->body }}</p>
+          </div>
+      </div>
+  @endif
+@endforeach</div>
+  <div>@if (Auth::check())
+    <div class="card mb-5">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Оставить комментарий</h4>
+
+            <form method="POST" action="{{ route('comments.store', $News->id) }}">
+                @csrf
+
+                <div class="form-group mb-4">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}" readonly>
+                </div>
+
+               
+                <div class="form-group mb-4">
+                    <label for="body">Ваш комментарий</label>
+                    <textarea name="body" id="body" class="form-control" rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+            </form>
+        </div>
+    </div>
+@endif</div>
 @endsection

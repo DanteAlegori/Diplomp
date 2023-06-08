@@ -12,7 +12,7 @@ class News extends Model
         'name',
         'zagolovok',
         'content',
-        
+        'categori_id',
     ];
 
     public function categori()
@@ -20,5 +20,8 @@ class News extends Model
         return $this->belongsTo(Categori::class);
     }
    
-    
+    public function coments()
+{
+    return $this->hasMany(Coment::class);
+}
 }
