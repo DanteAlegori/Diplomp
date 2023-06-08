@@ -18,14 +18,16 @@ class Coment extends Model
         
     ];
 
-    public function categori()
-    {
-        return $this->belongsTo(Categori::class);
-    }
+    
    
-    public function coments()
-{
-    return $this->hasMany(Coment::class);
-}
+    public function news()
+    {
+        return $this->belongsTo(News::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
 

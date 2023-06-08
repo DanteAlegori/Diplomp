@@ -20,8 +20,8 @@ class News extends Model
         return $this->belongsTo(Categori::class);
     }
    
-    public function coments()
-{
-    return $this->hasMany(Coment::class);
-}
+    public function comments()
+    {
+        return $this->hasMany(Coment::class);
+    }
 }

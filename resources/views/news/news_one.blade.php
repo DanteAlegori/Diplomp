@@ -21,7 +21,7 @@
           <div class="card-body">
               <h5 class="card-title">{{ $comment->user->name }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ $comment->created_at->diffForHumans() }}</h6>
-              <p class="card-text">{{ $comment->body }}</p>
+              <p class="card-text">{{ $comment->content}}</p>
           </div>
       </div>
   @endif
@@ -31,20 +31,14 @@
         <div class="card-body">
             <h4 class="card-title mb-4">Оставить комментарий</h4>
 
-            <form method="POST" action="{{ route('comments.store', $News->id) }}">
+            <form method="POST" action="{{ route('comments.store', [$News->id, $user_id ?? null]) }}">
                 @csrf
 
-                <div class="form-group mb-4">
-                    <label for="name">Ваше имя</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}" readonly>
-                </div>
+                <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}" readonly>
+                <br>
+                <textarea name="content" id="content" class="form-control" rows="5"></textarea>
 
                
-                <div class="form-group mb-4">
-                    <label for="body">Ваш комментарий</label>
-                    <textarea name="body" id="body" class="form-control" rows="5"></textarea>
-                </div>
-
                 <button type="submit" class="btn btn-primary">Отправить комментарий</button>
             </form>
         </div>

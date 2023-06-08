@@ -37,6 +37,7 @@
                                 <div class="list-group">
                                     <a href="{{ route('admin-news') }}" class="btn btn-primary">{{ 'Редактировать' }}</a>
                                     <a href="{{ route('createnewsview') }}" class="btn btn-success">{{ 'Добавить' }}</a>
+                                    <a href="{{ route('chek_coments') }}" class="btn btn-success">{{ 'Одобрить коментарии' }}</a>
                                 </div>
                             </div>
                         </div>

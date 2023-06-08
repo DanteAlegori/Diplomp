@@ -47,7 +47,7 @@ Route::controller(BioController::class)->group(function () {
 Route::controller(NewsController::class)->group(function () {
     Route::get('/news',  'allnews')->name('news');
 
-    Route::post('/comments/{News}/{user_id?}',  'storeComment')->name('comments.store');
+    Route::post('/comments/{News}/{user_id?}', 'storeComment')->name('comments.store');
     Route::get('/one_news{id?}', 'news')->name('news_one');
 });
 
@@ -87,6 +87,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin-news', [App\Http\Controllers\NewsController::class, 'allnewsadmin'])->name('admin-news');
 
     Route::post('/upgratenews', [App\Http\Controllers\NewsController::class, 'updatenews'])->name('updatenewss');
+
+    Route::patch('/comments/{comment_id}', [App\Http\Controllers\NewsController::class, 'update'])->name('comments.update');
+
+    Route::get('/chek_coments',[App\Http\Controllers\NewsController::class,  'chek_coments'])->name('chek_coments');
+
 
 
 

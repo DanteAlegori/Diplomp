@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('news_id')->nullable();
-            $table->string('approved')->nullable();
+            $table->boolean('approved')->nullable();
             $table->string('name')->nullable();
             $table->string('content')->nullable();
             $table->timestamps();

@@ -11,19 +11,18 @@ class NewsController extends Controller
 {
     public function allnews()
     {
-            $news = News::all();
-            return view('news.news', compact('news'));
-
+        $news = News::all();
+        return view('news.news', compact('news'));
     }
 
     public function news($id)
     {
         $News = News::findOrFail($id);
         $comments = Coment::where('news_id', $id)
-                            ->where('approved', true)
-                            ->with('user')
-                            ->latest()
-                            ->get();
+            ->where('approved', true)
+            ->with('user')
+            ->latest()
+            ->get();
 
         return view('news.news_one', compact('News', 'comments'));
     }
@@ -57,7 +56,7 @@ class NewsController extends Controller
     }
     public function allnewsadmin()
     {
-        
+
         $News = News::all();
         return view('admin.news.admin-news-up', compact('News'));
     }
@@ -68,7 +67,7 @@ class NewsController extends Controller
         News::destroy($id);
         return view('admin.admin');
     }
- 
+
     public function newsadminupdate($id)
     {
         $news = News::find($id);
@@ -96,22 +95,45 @@ class NewsController extends Controller
 
         return view('admin.admin');
     }
-    public function storeComment(Request $request, $News, $user_id = null)
+    public function storeComment(Request $request, $newsId, $user_id = null)
+    {
+        $request->validate([
+            'name' => 'required',
+            'content' => 'required'
+        ]);
+    
+        $news = News::findOrFail($newsId);
+    
+        $comment = new Coment;
+        $comment->news_id = $news->id;
+        $comment->user_id = $user_id ?? Auth::id();
+        $comment->name = $request->name;
+        $comment->content = $request->content;
+        $comment->approved = false; 
+        $comment->save();
+    
+        return back()->with('success', 'Комментарий ожидает подтверждения администратором.');
+    }
+    public function update(Request $request, $comment_id)
 {
-    $request->validate([
-        'name' => 'required',
-        'content' => 'required'
+    $comment = Coment::findOrFail($comment_id);
+    $comment->update([
+        'approved' => $request->input('approved')
     ]);
 
-    $coment = new Coment;
-    $coment->post_id = $News->id;
-    $coment->user_id = $user_id ?? Auth::id();
-    $coment->name = $request->name;
-    $coment->content = $request->content;
-    $coment->save();
-
-    return back()->with('success', 'Комментарий ожидает подтверждения администратором.');
+    return back()->with('success', 'Комментарий был обновлен.');
 }
 
-}
+    public function chek_coments()
+{
+    $news = News::whereHas('comments', function ($query) {
+        $query->where('approved', false);
+    })->get();
 
+    if ($news) {
+        return view('admin.news.chek_coment', compact('news'));
+    }
+
+    return view('admin.news.chek_coment');
+}
+}
