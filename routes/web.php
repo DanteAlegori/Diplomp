@@ -35,6 +35,7 @@ Route::controller(BioController::class)->group(function () {
 
     Route::get('/bios', 'index')->name('bios.index');
 
+    Route::get('/search', 'seach')->name('search');
 
     Route::post('/addToFavorites/{user_id}/{bio_id}',  'addFavoriteBio')->name('addFavoriteBio');
 
@@ -58,6 +59,11 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [App\Http\Controllers\UserController::class, 'user'])->name('user');
+
+    
+    Route::get('/createuserbio', [App\Http\Controllers\UserController::class, 'createbioviewuser'])->name('createbioviewuser');
+    Route::post('/createeuserbio', [App\Http\Controllers\UserController::class, 'createbiouser'])->name('createbiouser');
+
 });
 
 
@@ -90,9 +96,13 @@ Route::middleware(['admin'])->group(function () {
 
     Route::patch('/comments/{comment_id}', [App\Http\Controllers\NewsController::class, 'update'])->name('comments.update');
 
+    Route::delete('/comments/{comment_id}',  [App\Http\Controllers\NewsController::class, 'delete'])->name('comments.delete');
+
     Route::get('/chek_coments',[App\Http\Controllers\NewsController::class,  'chek_coments'])->name('chek_coments');
 
+    Route::get('/unapproved',[App\Http\Controllers\BioController::class,  'unapproved'])->name('unapproved');
 
+    Route::post('/approve/{id?}',[App\Http\Controllers\BioController::class,  'approve'])->name('approve');
 
 
 

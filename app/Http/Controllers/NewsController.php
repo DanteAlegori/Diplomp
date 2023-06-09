@@ -101,39 +101,47 @@ class NewsController extends Controller
             'name' => 'required',
             'content' => 'required'
         ]);
-    
+
         $news = News::findOrFail($newsId);
-    
+
         $comment = new Coment;
         $comment->news_id = $news->id;
         $comment->user_id = $user_id ?? Auth::id();
         $comment->name = $request->name;
         $comment->content = $request->content;
-        $comment->approved = false; 
+        $comment->approved = false;
         $comment->save();
-    
+
         return back()->with('success', 'Комментарий ожидает подтверждения администратором.');
     }
     public function update(Request $request, $comment_id)
+    {
+        $comment = Coment::findOrFail($comment_id);
+        $comment->update([
+            'approved' => $request->input('approved')
+        ]);
+
+        return back()->with('success', 'Комментарий был обновлен.');
+    }
+
+    public function delete($comment_id)
 {
     $comment = Coment::findOrFail($comment_id);
-    $comment->update([
-        'approved' => $request->input('approved')
-    ]);
+    $comment->delete();
 
-    return back()->with('success', 'Комментарий был обновлен.');
+    return back()->with('success', 'Комментарий был удален.');
 }
 
     public function chek_coments()
-{
-    $news = News::whereHas('comments', function ($query) {
-        $query->where('approved', false);
-    })->get();
+    {
+        $news = News::whereHas('comments', function ($query) {
+            $query->where('approved', false);
+        })->get();
 
-    if ($news) {
-        return view('admin.news.chek_coment', compact('news'));
+        if ($news) {
+            return view('admin.news.chek_coment', compact('news'));
+        }
+
+        return view('admin.news.chek_coment');
     }
-
-    return view('admin.news.chek_coment');
-}
 }

@@ -54,7 +54,7 @@
           </div>
 
           <div class="mb-3">
-            <label for="death_place" class="form-label">Место рождения</label>
+            <label for="death_place" class="form-label">места смерти</label>
             <input type="string" class="form-control" id="death_place" name="death_place" required>
           </div>
 
@@ -133,7 +133,10 @@
                 <textarea class="form-control" id="nagradi"  name="nagradi" rows="10"></textarea>
               </div>
 
-
+              <div class="mb-3">
+                <label for="sourse" class="form-label">Источник</label>
+                <input type="string" class="form-control" id="sourse" name="sourse" required>
+              </div>
             
 
 

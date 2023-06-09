@@ -33,8 +33,14 @@ class Bio extends Model
         'achivments',
         'nagradi',
         'categori_id',
+        'status',
+        'sourse',
     ];
-
+    
+    public function scopeApproved($query)
+    {
+        return $query->where('status', true);
+    }
     public function categori()
     {
         return $this->belongsTo(Categori::class);
@@ -44,6 +50,36 @@ class Bio extends Model
         return $this->hasMany(Favorite_biography::class);
     }
 
+    protected $searchable = [
+        'name', 
+        'surname', 
+        'patronomic', 
+        'birthday_date', 
+        'death_date', 
+        'birthday_place', 
+        'death_place', 
+        'childhood_live_content', 
+        'stydent_live_content', 
+        'osnovnaia_live_content',
+        'pensia_live_content',
+        'opisanie_deitelnosti',
+        'xp_for_work', 
+        'achivments', 
+        'nagradi', 
+        'sourse',
+    ];
+
+    public function search($searchTerm)
+    {
+        return Bio::where(function($query) use ($searchTerm) {
+            foreach ($this->searchable as $column) {
+                $query->orWhere($column, 'like', '%' . $searchTerm . '%');
+            }
+        })->approved()->get();
+    }
+}
+
+
 
     
-}
+

@@ -18,7 +18,7 @@ class Categori extends Model
 
     public function bios()
     {
-        return $this->hasMany(Bio::class);
+        return $this->belongsTo(Bio::class);
     }
 
     

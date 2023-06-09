@@ -10,13 +10,11 @@ use Illuminate\Http\Request;
 class BioController extends Controller
 {
     public function allbio()
-    {
-
-
-        $Bios = Bio::all();
-        $categori = Categori::all();
-        return view('bio.bio', compact('Bios','categori'));
-    }
+{
+    $Bios = Bio::approved()->get();
+    $categori = Categori::all();
+    return view('bio.bio', compact('Bios', 'categori'));
+}
 
     public function bio($id)
     {
@@ -111,6 +109,8 @@ class BioController extends Controller
         $bio->achivments = $request->input('achivments');
         $bio->nagradi = $request->input('nagradi');
         $bio->categori_id = $request->input('categori_id');
+        $bio->sourse = $request->input('sourse');
+        $bio->status = true;
 
         $bio->save();
 
@@ -228,6 +228,7 @@ class BioController extends Controller
             $bio->achivments = $request->input('achivments');
             $bio->nagradi = $request->input('nagradi');
             $bio->categori_id = $request->input('categori_id');
+            $bio->sourse = $request->input('sourse');
             $bio->save();
 
             return redirect()->route('admin')->with('success', 'Информация успешно обновлена');
@@ -279,16 +280,68 @@ class BioController extends Controller
     
     public function index(Request $request)
     {
-        $query = Bio::query();
-    
-        if ($request->categori) {
-            $query->where('categori_id', $request->categori);
-        }
-    
-        $Bios = $query->get();
+        $query = Bio::query()->whereHas('categori', function($q) use ($request) {
+            $q->where('id', $request->category);
+        });
+        
+        $Bios = $query->paginate(10);
         $categori = Categori::all();
-    
+        
         return view('bio.fitr_bio', compact('Bios', 'categori'));
     }
     
+    public function unapproved()
+    {
+        $bios = Bio::where('status', false)->get();
+        return view('admin.bio.status_update', compact('bios'));
+    }
+
+    public function approve($id)
+    {
+        $bio = Bio::find($id);
+        $bio->status = true;
+        $bio->save();
+    
+        return redirect()->route('admin');
+    }
+
+
+    public function seach(Request $request)
+    {
+        $categori = Categori::all();
+        $query = $request->input('query');
+
+        if (!$query) {
+            return redirect()->back();
+        }
+
+        $bio = Bio::query()
+        ->orWhere('name', 'LIKE', "%{$query}%")
+        ->orWhere('surname', 'LIKE', "%{$query}%")
+        ->orWhere('patronomic', 'LIKE', "%{$query}%")
+        ->orWhere('birthday_date', 'LIKE', "%{$query}%")
+        ->orWhere('death_date', 'LIKE', "%{$query}%")
+        ->orWhere('birthday_place', 'LIKE', "%{$query}%")
+        ->orWhere('death_place', 'LIKE', "%{$query}%")
+        ->orWhere('childhood_live_content', 'LIKE', "%{$query}%")
+        ->orWhere('stydent_live_content', 'LIKE', "%{$query}%")
+        ->orWhere('osnovnaia_live_content', 'LIKE', "%{$query}%")
+        ->orWhere('pensia_live_content', 'LIKE', "%{$query}%")
+        ->orWhere('opisanie_deitelnosti', 'LIKE', "%{$query}%")
+        ->orWhere('xp_for_work', 'LIKE', "%{$query}%")
+        ->orWhere('achivments', 'LIKE', "%{$query}%")
+        ->orWhere('nagradi', 'LIKE', "%{$query}%")
+        ->orWhere('sourse', 'LIKE', "%{$query}%")
+        ->get();
+
+        return view('bio.seach_bio', [
+            'bio' => $bio,
+            'query' => $query,
+        'categori'=>$categori 
+
+        ]);
+    }
+
+
+
 }

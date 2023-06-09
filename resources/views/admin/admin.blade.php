@@ -20,6 +20,7 @@
                                 <div class="list-group">
                                     <a href="{{ route('admin_bio') }}" class="btn btn-primary">{{ __('Редактировать') }}</a>
                                     <a href="{{ route('createview') }}" class="btn btn-success">{{ __('Добавить') }}</a>
+                                    <a href="{{ route('unapproved') }}" class="btn btn-success">{{ __('Одобрить биографию') }}</a>
                                 </div>
                             </div>
                         </div>

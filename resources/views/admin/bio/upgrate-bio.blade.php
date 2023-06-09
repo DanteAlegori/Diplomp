@@ -56,9 +56,10 @@
           </div>
 
           <div class="mb-3">
-            <label for="death_place" class="form-label">Место рождения</label>
-            <input type="string" class="form-control" id="death_place" name="death_place" value="{{ $bio->death_place }}">
+            <label for="death_place" class="form-label">места смерти</label>
+            <input type="string" class="form-control" id="death_place" name="death_place" required>
           </div>
+
 
 
 
@@ -132,7 +133,10 @@
                 <label for="nagradi" class="form-label">Награды</label>
                 <textarea class="form-control" id="nagradi"  name="nagradi" rows="10" value="{{ $bio->nagradi }}"></textarea>
               </div>
-
+              <div class="mb-3">
+                <label for="sourse" class="form-label">Источник</label>
+                <input type="string" class="form-control" id="sourse" name="sourse" required>
+              </div>
 
       <button type="submit" class="btn btn-success">Обновить</button>
    </form>

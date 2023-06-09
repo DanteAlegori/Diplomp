@@ -1,22 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-5 biography-section">
-        <form method="GET" action="{{ route('bios.index') }}">
-            <div class="form-group">
-                <label for="category">Категории:</label>
-                <select name="category" id="category" class="form-control">
-                    <option value="">Все категории</option>
-                    @foreach ($categori as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Отфильтровать</button>
-        </form>
+<form action="{{ route('search') }}" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Поиск...">
+        <button type="submit" class="btn btn-outline-secondary">Искать</button>
+    </div>
+</form>
 
+<form method="GET" action="{{ route('bios.index') }}" class="mb-3">
+    <div class="form-group">
+        <label for="category">Категории:</label>
+        <select name="category" id="category" class="form-control">
+           
+            @foreach ($categori as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Отфильтровать</button>
+</form>
+<div class="container py-5 biography-section">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center g-4">
             @foreach ($Bios as $bio)
+            @if($bio->status == true)
+            <!-- Выводить представление только для одобренных биографий -->
                 <div class="col-md-4">
                     <div class="card h-100 biography-card">
                         <img src="{{ asset('/img/' . $bio->img) }}" alt="{{ $bio->name }}" class="card-img-top"
@@ -44,6 +54,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>

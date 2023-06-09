@@ -38,6 +38,9 @@ return new class extends Migration
             $table->text('achivments',15000)->nullable();
             $table->text('nagradi',15000)->nullable();
             $table->foreignId('categori_id')->nullable();
+            $table->boolean('status')->default(false);
+            $table->text('sourse',15000)->nullable();
+            
             $table->timestamps();
         });
     }
