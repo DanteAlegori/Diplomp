@@ -17,7 +17,7 @@
             <!-- Выводить представление только для одобренных биографий -->
                 <div class="col-md-4">
                     <div class="card h-100 biography-card">
-                        <img src="{{ asset('/img/' . $bio->img) }}" alt="{{ $bio->name }}" class="card-img-top"
+                        <img src="{{ asset('../public/img/' . $bio->img) }}" alt="{{ $bio->name }}" class="card-img-top"
                             style="max-height: 300px;" />
                         <div class="card-body">
                             <h3 class="card-title">{{ $bio->name }} {{ $bio->surname }} {{ $bio->patronomic }}</h3>

@@ -8,9 +8,9 @@
                     <div class="col-md-6">
                         <div class="card h-100 news-card shadow-sm">
                             <div class="card-img-top news-img"
-                                style="background-image: url('{{ asset('/img/' . $news->img) }}')">
+                                style="background-image: url('{{ asset('../public/img/' . $news->img) }}')">
                                 <a href="{{ route('news_one', $news->id) }}">
-                                    <img src="{{ asset('/img/' . $news->img) }}" alt="{{ $news->name }}"
+                                    <img src="{{ asset('../public/img/' . $news->img) }}" alt="{{ $news->name }}"
                                         class="d-none d-md-block img-fluid news-img" style="min-height: 200px" />
                                 </a>
                             </div>
