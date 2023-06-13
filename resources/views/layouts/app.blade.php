@@ -19,15 +19,20 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light border border-success border-3">
-    <div class="container-fluid">
-      <a class="navbar-brand " href="{{ route('index') }}"> <h4>Агробио</h4></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <nav class="navbar navbar-expand-lg navbar-light border border-success border-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('index') }}">
+               
+                   <img src="/public/img/logotip.png" class="rounded-circle logo-wrapper  rounded-3" width="50" height="50" alt="logotip">
+               
+                <span class=" p-2 navbar-text">Агробио</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
                             href="{{ route('onas') }}">{{ __('О нас') }}</a>
@@ -43,7 +48,7 @@
                     @Auth
                         <li>
                             <a class="nav-link active" aria-current="page"
-                            href="{{ route('showFavorites', ['user_id' => auth()->user()->id]) }}">{{ __('Избраное') }}</a>
+                                href="{{ route('showFavorites', ['user_id' => auth()->user()->id]) }}">{{ __('Избраное') }}</a>
                         </li>
                     @endAuth
 

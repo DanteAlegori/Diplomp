@@ -21,7 +21,7 @@
                 </form>
                 <form method="POST" action="{{ route('delete', $bio->id) }}">
                     @csrf
-                    @method('DELETE')
+                    
                     <button type="submit" class="btn btn-danger">{{ __('Удалить') }}</button>
                 </form>
             </div>

@@ -96,7 +96,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::patch('/comments/{comment_id}', [App\Http\Controllers\NewsController::class, 'update'])->name('comments.update');
 
-    Route::delete('/comments/{comment_id}',  [App\Http\Controllers\NewsController::class, 'delete'])->name('comments.delete');
+    Route::get('/comments/{comment_id}',  [App\Http\Controllers\NewsController::class, 'delete'])->name('comments.delete');
 
     Route::get('/chek_coments',[App\Http\Controllers\NewsController::class,  'chek_coments'])->name('chek_coments');
 

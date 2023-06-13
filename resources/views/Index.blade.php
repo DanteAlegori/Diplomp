@@ -6,7 +6,10 @@
     height: 100vh;  
   ">
         <div class="px-4 py-5 my-5 text-center" style="backdrop-filter: blur(4px);">
-            <h1 class="display-5 fw-bold">Агробио</h1>
+            <div class=" mr-2">
+                <img src="{{ asset('../public/img/logotip.png') }}" class="rounded-circle logo-wrapper rounded-3 "  width="150" height="150" alt="logotip"  >
+            </div>
+            <h1 class="p-3 display-5 fw-bold">Агробио</h1>
             <div class="col-lg-6 mx-auto">
                 <p class="lead mb-4">Наш сайт позволяет узнать о исторических личностях связанных с сельским хозяйством и не
                     только.</p>
