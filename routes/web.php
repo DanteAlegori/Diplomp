@@ -7,7 +7,7 @@ use App\Http\Controllers\BioController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaticController;
-
+use App\Http\Middleware\AdminOrModerato;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +49,7 @@ Route::controller(NewsController::class)->group(function () {
     Route::get('/news',  'allnews')->name('news');
 
     Route::post('/comments/{News}/{user_id?}', 'storeComment')->name('comments.store');
+    
     Route::get('/one_news{id?}', 'news')->name('news_one');
 });
 
@@ -60,15 +61,22 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [App\Http\Controllers\UserController::class, 'user'])->name('user');
 
-    
-    Route::get('/createuserbio', [App\Http\Controllers\UserController::class, 'createbioviewuser'])->name('createbioviewuser');
-    Route::post('/createeuserbio', [App\Http\Controllers\UserController::class, 'createbiouser'])->name('createbiouser');
+    Route::get('/user_aplikation', [App\Http\Controllers\UserController::class, 'aplication_on_user'])->name('aplication_on_user');
 
+    Route::post('/createEditorRequest', [App\Http\Controllers\UserController::class, 'createEditorRequest'])->name('createEditorRequest');
 });
 
 
-Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('admin');
+
+Route::middleware(['editor'])->group(function () {
+
+    Route::get('/createuserbio', [App\Http\Controllers\UserController::class, 'createbioviewuser'])->name('createbioviewuser');
+    Route::post('/createeuserbio', [App\Http\Controllers\UserController::class, 'createbiouser'])->name('createbiouser');
+});
+
+
+
+Route::middleware([AdminOrModerato::class])->group(function () {
 
 
 
@@ -98,11 +106,13 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/comments/{comment_id}',  [App\Http\Controllers\NewsController::class, 'delete'])->name('comments.delete');
 
-    Route::get('/chek_coments',[App\Http\Controllers\NewsController::class,  'chek_coments'])->name('chek_coments');
+    Route::get('/chek_coments', [App\Http\Controllers\NewsController::class,  'chek_coments'])->name('chek_coments');
 
-    Route::get('/unapproved',[App\Http\Controllers\BioController::class,  'unapproved'])->name('unapproved');
+    Route::get('/unapproved', [App\Http\Controllers\BioController::class,  'unapproved'])->name('unapproved');
 
-    Route::post('/approve/{id?}',[App\Http\Controllers\BioController::class,  'approve'])->name('approve');
+    Route::post('/approve/{id?}', [App\Http\Controllers\BioController::class,  'approve'])->name('approve');
+
+
 
 
 
@@ -115,12 +125,12 @@ Route::middleware(['admin'])->group(function () {
     Route::post('/admin-categori-update', [App\Http\Controllers\AdminController::class, 'categoriupdate'])->name('update_categori');
 
 
-    Route::post('/cat_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'addcategoribio'])->name('addcategoribio'); 
+    Route::post('/cat_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'addcategoribio'])->name('addcategoribio');
 
     Route::get('/categori_add_bio/{id}', [App\Http\Controllers\AdminController::class, 'viewaddcategoribio'])->name('viewaddcategoribio');
 
 
-Route::post('/cat_add_news/{id}', [App\Http\Controllers\AdminController::class, 'addcategorinews'])->name('addcategorinews'); 
+    Route::post('/cat_add_news/{id}', [App\Http\Controllers\AdminController::class, 'addcategorinews'])->name('addcategorinews');
 
     Route::get('/categori_add_news/{id}', [App\Http\Controllers\AdminController::class, 'viewaddcategorinews'])->name('viewaddcategorinews');
 
@@ -137,4 +147,26 @@ Route::post('/cat_add_news/{id}', [App\Http\Controllers\AdminController::class, 
 
     Route::get('/upgrate_bio/{id?}', [App\Http\Controllers\BioController::class, 'updatePage'])->name('upgrate');
     Route::get('/bio_delete/{id?}', [App\Http\Controllers\BioController::class, 'delete'])->name('delete');
+});
+Auth::routes();
+Route::middleware(['admin'])->group(function () {
+
+
+    Route::get('/admin/users/remove/{id}', [App\Http\Controllers\UserController::class, 'removeUser'])->name('admin_remove_user');
+
+    Route::get('/admin/users_all', [App\Http\Controllers\UserController::class, 'alluser'])->name('alluser');
+
+    Route::get('/admin/searchuser', [App\Http\Controllers\UserController::class, 'searchuser'])->name('searchuser');  
+
+    Route::get('/admin/users_one/{id?}', [App\Http\Controllers\UserController::class, 'oneuser'])->name('oneuser');
+
+    Route::get('/admin/makemoderator/{id?}', [App\Http\Controllers\UserController::class, 'makeModerator'])->name('makeModerator');
+
+    Route::get('/admin/makeeditor/{id?}', [App\Http\Controllers\UserController::class, 'makeEditor'])->name('makeEditor');
+
+    Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admin'])->name('admin');
+
+    Route::get('/viewaprove', [App\Http\Controllers\UserController::class, 'viewaprove'])->name('viewaprove');
+
+    Route::post('/approvee/{id?}', [App\Http\Controllers\UserController::class, 'approve'])->name('approve1');
 });

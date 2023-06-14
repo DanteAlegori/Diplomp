@@ -14,13 +14,7 @@ class StaticController extends Controller
         return view('static.onas');
     }
 
-    public function info(){
-        return view('static.info');
-    }
-
-    public function contacts(){
-        return view('static.contacts');
-    }
+   
 }
 
 

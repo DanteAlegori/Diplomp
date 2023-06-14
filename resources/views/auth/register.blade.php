@@ -20,7 +20,7 @@
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ 'Проверьте свой логин'}}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -35,7 +35,7 @@
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ 'Проверьте свое имя' }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -51,7 +51,7 @@
 
                                 @error('surname')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ 'Проверте свою фамилию' }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -66,7 +66,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ 'Проверьте коректность почты' }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -80,7 +80,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ 'Попробуйте другой пароль он должен содержать 8 символов' }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -95,17 +95,6 @@
                         </div>
 
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Согласен с правилами') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

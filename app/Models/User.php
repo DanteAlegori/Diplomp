@@ -23,6 +23,7 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        
     ];
 
     /**
@@ -53,5 +54,6 @@ class User extends Authenticatable
     {
         return $this->admin === true;
     }
+ 
 }
 

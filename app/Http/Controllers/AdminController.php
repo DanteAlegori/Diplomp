@@ -49,7 +49,7 @@ class AdminController extends Controller
     {
         $categori = Categori::find($id);
         Categori::destroy($id);
-        return view('admin.categori.admin-categori', compact('categori'));
+        return view('admin.admin');
     }
 
 

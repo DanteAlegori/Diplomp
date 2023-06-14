@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 class BioController extends Controller
 {
     public function allbio()
-{
-    $Bios = Bio::approved()->get();
-    $categori = Categori::all();
-    return view('bio.bio', compact('Bios', 'categori'));
-}
+    {
+        $Bios = Bio::approved()->get();
+        $categori = Categori::all();
+        return view('bio.bio', compact('Bios', 'categori'));
+    }
 
     public function bio($id)
     {
@@ -246,7 +246,6 @@ class BioController extends Controller
             $favorite_bio->user_id = $user_id;
             $favorite_bio->bio_id = $bio_id;
             $favorite_bio->save();
-            
         }
         return back();
     }
@@ -265,7 +264,6 @@ class BioController extends Controller
         } else {
             return redirect()->back()->with('error', 'Биография не была найдена в вашем избранном списке.');
         }
-        
     }
 
 
@@ -277,19 +275,19 @@ class BioController extends Controller
 
 
 
-    
+
     public function index(Request $request)
     {
-        $query = Bio::query()->whereHas('categori', function($q) use ($request) {
+        $query = Bio::query()->whereHas('categori', function ($q) use ($request) {
             $q->where('id', $request->category);
         });
-        
+        $bioo =Bio::all();
         $Bios = $query->paginate(10);
         $categori = Categori::all();
-        
-        return view('bio.fitr_bio', compact('Bios', 'categori'));
+
+        return view('bio.fitr_bio', compact('Bios', 'categori','bioo'));
     }
-    
+
     public function unapproved()
     {
         $bios = Bio::where('status', false)->get();
@@ -301,13 +299,14 @@ class BioController extends Controller
         $bio = Bio::find($id);
         $bio->status = true;
         $bio->save();
-    
+
         return redirect()->route('admin');
     }
 
 
     public function seach(Request $request)
     {
+        $bioo = Bio::all();
         $categori = Categori::all();
         $query = $request->input('query');
 
@@ -316,32 +315,26 @@ class BioController extends Controller
         }
 
         $bio = Bio::query()
-        ->orWhere('name', 'LIKE', "%{$query}%")
-        ->orWhere('surname', 'LIKE', "%{$query}%")
-        ->orWhere('patronomic', 'LIKE', "%{$query}%")
-        ->orWhere('birthday_date', 'LIKE', "%{$query}%")
-        ->orWhere('death_date', 'LIKE', "%{$query}%")
-        ->orWhere('birthday_place', 'LIKE', "%{$query}%")
-        ->orWhere('death_place', 'LIKE', "%{$query}%")
-        ->orWhere('childhood_live_content', 'LIKE', "%{$query}%")
-        ->orWhere('stydent_live_content', 'LIKE', "%{$query}%")
-        ->orWhere('osnovnaia_live_content', 'LIKE', "%{$query}%")
-        ->orWhere('pensia_live_content', 'LIKE', "%{$query}%")
-        ->orWhere('opisanie_deitelnosti', 'LIKE', "%{$query}%")
-        ->orWhere('xp_for_work', 'LIKE', "%{$query}%")
-        ->orWhere('achivments', 'LIKE', "%{$query}%")
-        ->orWhere('nagradi', 'LIKE', "%{$query}%")
-        ->orWhere('sourse', 'LIKE', "%{$query}%")
-        ->get();
+            ->orWhere('name', 'LIKE', "%{$query}%")
+            ->orWhere('surname', 'LIKE', "%{$query}%")
+            ->orWhere('patronomic', 'LIKE', "%{$query}%")
+            ->orWhere('birthday_date', 'LIKE', "%{$query}%")
+            ->orWhere('death_date', 'LIKE', "%{$query}%")
+            ->orWhere('birthday_place', 'LIKE', "%{$query}%")
+            ->orWhere('death_place', 'LIKE', "%{$query}%")
+            ->orWhere('childhood_live_content', 'LIKE', "%{$query}%")
+            ->orWhere('stydent_live_content', 'LIKE', "%{$query}%")
+            ->orWhere('osnovnaia_live_content', 'LIKE', "%{$query}%")
+            ->orWhere('pensia_live_content', 'LIKE', "%{$query}%")
+            ->orWhere('opisanie_deitelnosti', 'LIKE', "%{$query}%")
+            ->orWhere('xp_for_work', 'LIKE', "%{$query}%")
+            ->orWhere('achivments', 'LIKE', "%{$query}%")
+            ->orWhere('nagradi', 'LIKE', "%{$query}%")
+            ->orWhere('sourse', 'LIKE', "%{$query}%")
+            ->get();
 
-        return view('bio.seach_bio', [
-            'bio' => $bio,
-            'query' => $query,
-        'categori'=>$categori 
-
-        ]);
+            return view('bio.seach_bio', compact('bioo', 'bio', 'categori'), [
+                'query' => $query
+            ]);
     }
-
-
-
 }

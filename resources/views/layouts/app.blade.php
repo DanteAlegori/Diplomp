@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -15,6 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://cdn.tiny.cloud/1/pj70c5ngtwqk3he3qucr78o2bp5ragj9v2k31p37o6een838/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -22,9 +24,10 @@
     <nav class="navbar navbar-expand-lg navbar-light border border-success border-3">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('index') }}">
-               
-                   <img src="/public/img/logotip.png" class="rounded-circle logo-wrapper  rounded-3" width="50" height="50" alt="logotip">
-               
+
+                <img src="/public/img/logotip.png" class="rounded-circle logo-wrapper  rounded-3" width="50"
+                    height="50" alt="logotip">
+
                 <span class=" p-2 navbar-text">Агробио</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -77,8 +80,8 @@
                                        document.getElementById('logout-form').submit();">
                                     {{ __('Выйти из акаунта') }}
                                 </a>
-                                <a class="nav-link active" aria-current="page"
-                                    href="{{ route('user') }}">{{ __('Профиль') }}</a>
+                                <a class="nav-link active " aria-current="page"
+                                    href="{{ route('user') }}">{{ __('Профиль') }}</a></li>
 
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -116,6 +119,20 @@
             <p class="text-center text-muted">© 2023 Dante Alegori</p>
         </footer>
     </div>
+    
 </body>
 
+<script>
+    tinymce.init({
+        selector: 'textarea[name=childhood_live_content], textarea[name=stydent_live_content], textarea[name=osnovnaia_live_content], textarea[name=pensia_live_content], textarea[name=opisanie_deitelnosti], textarea[name=xp_for_work], textarea[name=achivments], textarea[name=nagradi], textarea[name=status], textarea[name=sourse],textarea[name=content],textarea[name=zagolovok],textarea[name=description]', // Replace this CSS selector to match the placeholder element for TinyMCE
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+      toolbar: 'undo redo | formatselect | bold italic backcolor | aligncenter alignjustify | bullist numlist outdent indent | link | image | preview',
+      content_css: '{{ asset('css/app.css') }}',
+      init_instance_callback: function (editor) {
+        editor.on('Change', function (e) {
+          editor.save();
+        });
+      },
+    });
+  </script>
 </html>

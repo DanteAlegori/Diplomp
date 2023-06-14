@@ -60,4 +60,26 @@
                                         class="btn btn-success">{{ __('Добавить') }}</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              <h2>{{ 'Пользователи' }}</h2>
+                           </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                                 data-bs-parent="#accordionExample">
+                           <div class="accordion-body">
+                              <div class="list-group">
+                                 <a href="{{ route('alluser') }}" class="btn btn-primary">{{ 'Просмотреть всех' }}</a>
+                                 <a href="viewaprove" class="btn btn-success">{{ 'Одобрить Редактора' }}</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                    </div>
+                </div>
+                    
                         @endsection

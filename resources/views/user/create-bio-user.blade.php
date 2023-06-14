@@ -145,4 +145,5 @@
       <button type="submit" class="btn btn-success">Создать</button>
    </form>
   </div>
+
 @endsection

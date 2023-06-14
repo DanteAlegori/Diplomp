@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin
+class editor
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         
-            if(auth()->user()->is_admin == true)  {
+            if(auth()->user()->editor == true) {
                 return $next($request);
             } else {
                 return redirect()->route('index')->with(['error' => 'Access denied.']);
