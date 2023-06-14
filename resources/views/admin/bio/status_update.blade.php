@@ -19,7 +19,7 @@
                     @csrf
                     <button type="submit" class="btn btn-primary">{{ __('Подтвердить') }}</button>
                 </form>
-                <form method="POST" action="{{ route('delete', $bio->id) }}">
+                <form method="GET" action="{{ route('delete', $bio->id) }}">
                     @csrf
                     
                     <button type="submit" class="btn btn-danger">{{ __('Удалить') }}</button>

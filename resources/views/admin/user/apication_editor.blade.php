@@ -11,13 +11,17 @@
         <div class="card-header">Логин - {{ $editorRequest->user->login }}</div>
         <div class="card-header">Id - {{ $editorRequest->user->id }}</div>
         <div class="card-body">
-          <p class="card-text">Заявка - {{ $editorRequest->content }}</p>
-          <p id="content_{{ $editorRequest->id }}" class="card-text mb-5">{!! html_entity_decode($editorRequest->content) !!}</p>
+          <p id="content_{{ $editorRequest->id }}" class="card-text mb-5">Заявка - {!! html_entity_decode($editorRequest->content) !!}</p>
           <p class="card-text">Дата подачи заявки - <small class="text-muted">{{ $editorRequest->created_at->format('d.m.Y H:i') }}</small></p>
           <form action="{{ route('approve1', $editorRequest->id) }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-primary">Подтвердить</button>
           </form>
+          <form method="POST" class="d-inline" action="{{ route('editor-requests.destroy', $editorRequest->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
         </div>
       </div>
       <script>

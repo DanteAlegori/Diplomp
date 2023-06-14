@@ -169,4 +169,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/viewaprove', [App\Http\Controllers\UserController::class, 'viewaprove'])->name('viewaprove');
 
     Route::post('/approvee/{id?}', [App\Http\Controllers\UserController::class, 'approve'])->name('approve1');
+
+    Route::delete('/editor-requests/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('editor-requests.destroy');
 });

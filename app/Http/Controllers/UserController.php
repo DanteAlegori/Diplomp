@@ -123,7 +123,8 @@ class UserController extends Controller
     public function alluser()
     {
         $users = User::all();
-        return view('admin.user.user_all', compact('users'));
+        $userss =User::all();
+        return view('admin.user.user_all', compact('users','userss'));
     }
 
     public function oneuser($id)
@@ -149,6 +150,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user) {
+            $user->editor = false;
             $user->moderator = true;
             $user->save();
             return redirect()->route('admin')->with('success', 'Пользователь успешно назначен модератором.');
@@ -162,6 +164,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user) {
+            $user->moderator = false;
             $user->editor = true;
             $user->save();
             return redirect()->route('admin')->with('success', 'Пользователь успешно назначен редактором.');
@@ -210,7 +213,15 @@ class UserController extends Controller
     
         return redirect()->route('admin')->with('error', 'Не удалось подтвердить заявку на редактора.');
     }
-
+    public function destroy($id)
+    {
+        $editorRequest = Application_editor::find($id);
+        if ($editorRequest) {
+            $editorRequest->delete();
+            return redirect()->route('admin')->with('success', 'Заявка на редактора успешно удалена.');
+        }
+        return redirect()->route('admin')->with('error', 'Не удалось удалить заявку на редактора.');
+    }
     public function searchuser(Request $request)
 {    $userss =User::all();
     $query = User::query();
