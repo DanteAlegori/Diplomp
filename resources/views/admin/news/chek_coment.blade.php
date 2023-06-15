@@ -32,7 +32,7 @@
                                 </form>
                                 <form action="{{ route('comments.delete', $comment->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('GET')
                                     <button type="submit" class="btn btn-danger">Удалить</button>
                                 </form>
                             </div>

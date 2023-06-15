@@ -1,35 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex justify-content-center">
-  <form class="mt-10" action="{{ route('createnews') }}" enctype="multipart/form-data" method="POST" >
+<div class="container">
+  <form class="mt-4 pt-3 pb-5" action="{{ route('createnews') }}" enctype="multipart/form-data" method="POST" >
     @csrf
 
-    <legend>Создание Новости</legend>
+    <legend class="mb-3">Создание Новости</legend>
 
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="name" class="form-label">Имя</label>
-      <input type="string" class="form-control" id="name" name="name" required>
+      <input type="string" class="form-control form-control-sm" id="name" name="name" required>
     </div>
 
-    <div class="mb-3">
-      <label for="zagolovok" class="form-label">Заголовок</label>
-        <textarea class="form-control" id="zagolovok"  name="zagolovok" rows="10"></textarea>
-    </div>
-
-    <div class="mb-3">
-        <label for="content" class="form-label">Контенд</label>
-          <textarea class="form-control" id="content"  name="content" rows="10"></textarea>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="form-group mb-3">
+          <label for="zagolovok" class="form-label text-left">Заголовок</label>
+          <textarea class="form-control form-control-sm" id="zagolovok"  name="zagolovok" rows="6"></textarea>
+        </div>
       </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group mb-3">
+          <label for="content" class="form-label text-left">Контент</label>
+          <textarea class="form-control form-control-sm" id="content"  name="content" rows="6"></textarea>
+        </div>
+      </div>
+    </div>
 
-      <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="img" class="form-label">Фото новости</label>  
-      <input class="form-control" type="file" id="img" name="img">
-      </div>
+      <input class="form-control form-control-sm" type="file" id="img" name="img">
+    </div>
 
 
-      <button type="submit" class="btn btn-success">Создать</button>
-       </div>
-   </form>
-  </div>
+    <div class="form-group mb-3 d-grid gap-2">
+      <button type="submit" class="btn btn-success btn-lg">Создать</button>
+    </div>
+  </form>
+</div>
 @endsection

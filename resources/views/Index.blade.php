@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <div class="bg-image d-flex justify-content-center align-items-center"
-        style="
-    background-image: url('../public/img/pol.jpg');
-    height: 100vh;  
+<div class="bg-image d-flex justify-content-center align-items-center" style="background-image: url('../public/img/pol.jpg'); height: 100vh;, height: 100%;  
+    background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;">
+   
   ">
         <div class="px-4 py-5 my-5 text-center" style="backdrop-filter: blur(4px);">
             <div class=" mr-2">

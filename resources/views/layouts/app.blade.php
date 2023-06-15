@@ -125,7 +125,7 @@
 <script>
     tinymce.init({
         selector: 'textarea[name=childhood_live_content], textarea[name=stydent_live_content], textarea[name=osnovnaia_live_content], textarea[name=pensia_live_content], textarea[name=opisanie_deitelnosti], textarea[name=xp_for_work], textarea[name=achivments], textarea[name=nagradi], textarea[name=status], textarea[name=sourse],textarea[name=content],textarea[name=zagolovok],textarea[name=description]', // Replace this CSS selector to match the placeholder element for TinyMCE
-        language: 'ru',
+      language: 'ru',
         plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
       toolbar: 'undo redo | formatselect | bold italic backcolor | aligncenter alignjustify | bullist numlist outdent indent | link | image | preview',
       content_css: '{{ asset('css/app.css') }}',
