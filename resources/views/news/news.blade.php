@@ -20,6 +20,9 @@
                                     <span class="badge bg-primary">{{ $news->categori->name }}</span>
                                 @endif
                                 <p id="zagolovok" class="card-text mb-5">{!! html_entity_decode($news->zagolovok) !!}</p>
+                                <script>
+                                    tinymce.get('zagolovok').setContent('{{($news->zagolovok)}}');
+                                  </script>
                                 <a href="{{ route('news_one', $news->id) }}"
                                     class="btn btn-primary">{{ __('Читать') }}</a>
                             </div>
@@ -29,7 +32,5 @@
             @endforeach
         </div>
     </div>
-    <script>
-        tinymce.get('zagolovok').setContent('{{($news->zagolovok)}}');
-      </script>
+  
 @endsection
