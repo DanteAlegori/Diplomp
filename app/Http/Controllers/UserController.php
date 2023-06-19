@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\application_editor;
+use App\Models\Application_editor;
 use App\Models\User;
 use App\Models\Bio;
 use Illuminate\Http\Request;
